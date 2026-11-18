@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reddit Insights Snapshot</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@600;700&family=Inter:wght@400;600&display=swap">
+<style>
+:root{--ink:#111111;--body:#2B2B2B;--soft:#5C5C5C;--muted:#8A8A8A;--bg:#F7F7F4;--card:#FFFFFF;--line:#E6E6E3;--yel:#FFE600;--neg:#B03A00;--grey:#5C5C5C;color-scheme:light}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--body);font:15px/1.55 Inter,Arial,sans-serif}
+a{color:var(--ink);text-decoration-color:#C9B800;text-underline-offset:3px}
+a:hover{text-decoration-color:var(--ink)}
+.wrap{max-width:1180px;margin:0 auto;padding:0 32px}
+header.top{background:var(--ink);color:#fff}
+header.top .wrap{display:flex;align-items:center;justify-content:space-between;padding-top:18px;padding-bottom:18px;gap:16px}
+header.top img.logo{height:22px;display:block}
+header.top .meta{font:600 12px/1.3 Montserrat,Arial,sans-serif;letter-spacing:.06em;color:var(--yel);text-transform:uppercase;text-align:right}
+.hero{padding:56px 0 24px}
+.eyebrow{font:700 12px/1 Montserrat,Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--soft)}
+h1{font:400 64px/0.95 "Bebas Neue",Impact,sans-serif;color:var(--ink);margin:12px 0 16px;letter-spacing:.01em}
+.lede{font-size:18px;max-width:780px;color:var(--body);margin:0}
+.lede b{color:var(--ink)}
+section{padding:40px 0 8px}
+.h2{display:flex;align-items:center;gap:14px;margin:0 0 20px}
+.h2 i{width:8px;height:40px;background:var(--yel);display:block;flex:none}
+.h2 h2{font:400 38px/1 "Bebas Neue",Impact,sans-serif;color:var(--ink);margin:0;letter-spacing:.01em}
+.h2 img{height:30px;margin-left:auto}
+.sub{color:var(--soft);margin:-8px 0 20px;max-width:800px}
+.kpis{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:0;border:1px solid var(--line)}
+.kpi{background:var(--card);padding:20px 18px;border-right:1px solid var(--line)}
+.kpi:last-child{border-right:none}
+.kpi.y{background:var(--yel)}.kpi.k{background:var(--ink);color:#fff}
+.kpi .n{font:400 46px/1 "Bebas Neue",Impact,sans-serif;color:var(--ink)}
+.kpi.k .n{color:var(--yel)}
+.kpi .l{font:600 12.5px/1.35 Inter,Arial,sans-serif;margin-top:6px}
+.find{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}
+.f{padding:24px 26px 26px;background:var(--card);border:1px solid var(--line);margin:-1px 0 0 -1px}
+.f.y{background:var(--yel);border-color:var(--yel)}.f.k{background:var(--ink);color:#E9E9E9;border-color:var(--ink)}
+.f .q{font:700 12px/1.3 Montserrat,Arial,sans-serif;letter-spacing:.06em;text-transform:uppercase;color:var(--ink)}
+.f.k .q{color:var(--yel)}
+.f .n{font:400 44px/1 "Bebas Neue",Impact,sans-serif;color:var(--ink);margin:10px 0 2px}
+.f.k .n{color:#fff}
+.f .s{font-weight:600;color:var(--ink);margin-bottom:8px}
+.f.k .s{color:#fff}
+.f ul{margin:0;padding-left:18px}.f li{margin:3px 0}
+.charts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.card{background:var(--card);border:1px solid var(--line);padding:22px 22px 18px}
+.card h3{font:700 13px/1.3 Montserrat,Arial,sans-serif;letter-spacing:.05em;text-transform:uppercase;color:var(--ink);margin:0}
+.card .cap{color:var(--soft);font-size:13px;margin:4px 0 16px}
+.bar{display:grid;grid-template-columns:150px 1fr 48px;align-items:center;gap:10px;margin:9px 0;font-size:13px}
+.bar .t{height:16px;background:var(--line);position:relative}
+.bar .t b{position:absolute;inset:0 auto 0 0;background:var(--grey)}
+.bar .t b.hi{background:var(--ink)}.bar .t b.y{background:var(--yel)}
+.bar .v{font:700 13px Montserrat,Arial,sans-serif;color:var(--ink);text-align:right}
+.div{display:grid;grid-template-columns:150px 1fr 1fr 48px;align-items:center;gap:0;margin:9px 0;font-size:13px}
+.div .l{padding-right:10px}
+.div .ng{height:16px;display:flex;justify-content:flex-end;border-right:2px solid var(--ink)}
+.div .ps{height:16px}
+.div .ng b{background:var(--ink);height:16px;display:block}
+.div .ps b{background:var(--yel);height:16px;display:block}
+.div .v{font:700 13px Montserrat,Arial,sans-serif;text-align:right;color:var(--ink)}
+.div .v.m{color:var(--neg)}
+table{width:100%;border-collapse:collapse;background:var(--card);font-size:14px}
+th{font:700 12px/1.3 Montserrat,Arial,sans-serif;letter-spacing:.05em;text-transform:uppercase;text-align:left;padding:12px 14px;vertical-align:bottom}
+td{padding:12px 14px;border-top:1px solid var(--line);vertical-align:top}
+.tpn th:nth-child(1){background:var(--ink);color:var(--yel)}
+.tpn th:nth-child(2){background:var(--yel);color:var(--ink)}
+.tpn th:nth-child(3){background:var(--grey);color:#fff}
+.tpn th:nth-child(4){background:var(--ink);color:var(--yel)}
+.tpn td:first-child{background:#F0F0EC;font:700 13px/1.35 Montserrat,Arial,sans-serif;color:var(--ink);width:17%}
+.tpn td:first-child span{display:block;font:400 12px Inter,Arial,sans-serif;color:var(--soft);margin-top:4px}
+.voices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.voice{background:var(--card);border:1px solid var(--line);padding:18px 20px;display:flex;gap:14px}
+.voice .tag{flex:none;width:10px;background:var(--line)}
+.voice.p .tag{background:var(--yel)}.voice.n .tag{background:var(--ink)}.voice.q .tag{background:var(--grey)}
+.voice p{margin:0 0 8px;color:var(--ink)}
+.voice small{color:var(--soft);font-size:12.5px}
+.quote{background:var(--ink);color:#fff;padding:28px 32px;margin-top:16px;display:flex;gap:18px;align-items:flex-start}
+.quote .mk{font:400 72px/0.8 "Bebas Neue",Impact,sans-serif;color:var(--yel)}
+.quote p{font:600 22px/1.35 Montserrat,Arial,sans-serif;margin:0 0 8px}
+.quote small{color:#BDBDBD}.quote a{color:var(--yel)}
+.threads{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.thread{background:var(--card);border:1px solid var(--line);display:flex;flex-direction:column}
+.thread .hd{padding:18px 22px;border-bottom:1px solid var(--line)}
+.thread .sr{display:flex;justify-content:space-between;gap:10px;font:700 12px Montserrat,Arial,sans-serif;letter-spacing:.05em;text-transform:uppercase;color:var(--soft)}
+.thread .sr .pill{background:var(--yel);color:var(--ink);padding:2px 8px}
+.thread .sr .pill.ctx{background:var(--line)}
+.thread h3{font:700 17px/1.35 Montserrat,Arial,sans-serif;margin:8px 0 0}
+.thread h3 a{text-decoration:none}.thread h3 a:hover{text-decoration:underline}
+.thread .bd{padding:16px 22px 20px;flex:1}
+.facts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-bottom:14px}
+.facts div{background:#F4F4F0;padding:8px 10px}
+.facts b{display:block;font:700 15px Montserrat,Arial,sans-serif;color:var(--ink)}
+.facts span{font-size:11.5px;color:var(--soft)}
+.lbl{font:700 11.5px Montserrat,Arial,sans-serif;letter-spacing:.06em;text-transform:uppercase;color:var(--soft);margin:12px 0 4px}
+.thread p{margin:0}
+.sbar{display:flex;height:12px;margin-top:6px}
+.sbar i{display:block;height:12px}
+.sbar .p{background:var(--yel)}.sbar .u{background:var(--line)}.sbar .x{background:#BDBDBD}.sbar .n{background:var(--ink)}
+.slegend{font-size:12px;color:var(--soft);margin-top:4px}
+.method{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.method ul{margin:0;padding-left:18px}.method li{margin:5px 0}
+footer{margin-top:48px;border-top:1px solid var(--line);padding:20px 0 40px;color:var(--muted);font-size:12px}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+@media (max-width:980px){.kpis{grid-template-columns:repeat(3,minmax(0,1fr))}.kpi:nth-child(3){border-right:none}.kpi:nth-child(-n+3){border-bottom:1px solid var(--line)}.find,.charts{grid-template-columns:repeat(2,minmax(0,1fr))}.threads{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:760px){.wrap{padding:0 16px}h1{font-size:46px}.kpis,.find,.charts,.voices,.threads,.method{grid-template-columns:1fr}.kpi{border-right:none;border-bottom:1px solid var(--line)}.facts{grid-template-columns:repeat(2,minmax(0,1fr))}.tpn,.tpn tbody,.tpn tr,.tpn td{display:block;width:100%!important}.tpn thead{display:none}.tpn td:before{content:attr(data-h);display:block;font:700 11px Montserrat,Arial,sans-serif;letter-spacing:.06em;text-transform:uppercase;color:var(--soft);margin-bottom:4px}.tpn td:first-child:before{display:none}.bar,.div{grid-template-columns:120px 1fr 44px}.div{grid-template-columns:110px 1fr 1fr 44px}header.top .meta{display:none}}
+</style>
+</head>
+<body>
+
+<header class="top"><div class="wrap">
+<img class="logo" src="data:image/png;base64,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" alt="XCover">
+<div class="meta">Customer insights · Reddit listening · November 2026</div>
+</div></header>
+
+<div class="wrap">
+
+<div class="hero">
+<div class="eyebrow">Snapshot · 6 threads · 368 comments</div>
+<h1>What travellers say about travel insurance on Reddit</h1>
+<p class="lede">Travellers believe in <b>medical cover</b> but don’t trust insurers to <b>pay claims</b>, and many can’t tell which insurer to choose. Most of them are <b>US travellers</b> weighing a policy against the cover their credit card already gives.</p>
+</div>
+
+<section>
+<div class="h2"><i></i><h2>At a glance</h2></div>
+<div class="kpis">
+<div class="kpi"><div class="n">194</div><div class="l">insurance posts &amp; comments across 5 threads</div></div>
+<div class="kpi"><div class="n">+10%</div><div class="l">net sentiment overall (64 positive, 44 negative)</div></div>
+<div class="kpi y"><div class="n">1 in 6</div><div class="l">comments come from people still deciding</div></div>
+<div class="kpi"><div class="n">+79%</div><div class="l">net sentiment on medical &amp; emergency cover</div></div>
+<div class="kpi k"><div class="n">−50%</div><div class="l">net sentiment on claims &amp; trust</div></div>
+<div class="kpi"><div class="n">88%</div><div class="l">of people with a known location are US-based</div></div>
+</div>
+</section>
+
+<section>
+<div class="h2"><i></i><h2>Top 5 findings</h2></div>
+<div class="find">
+<div class="f y"><div class="q">01 · Who is still undecided?</div><div class="n">1 in 6</div><div class="s">insurance comments (33 of 194) come from people still deciding</div>
+<ul><li>Others share their own experience, give advice or debate whether it’s worth it</li><li>Overall mood is only just positive: net +10%</li></ul></div>
+<div class="f k"><div class="q">02 · Why are they unsure?</div><div class="n">42%</div><div class="s">of the undecided can’t tell who to trust</div>
+<ul><li>Conflicting reviews, doubt that claims will be paid, distrust of ads</li><li>30% don’t know which plan to pick; 9% find the cover terms confusing</li></ul></div>
+<div class="f"><div class="q">03 · What do travellers value most?</div><div class="n">+79%</div><div class="s">net sentiment on medical &amp; emergency cover</div>
+<ul><li>No negative comments in this theme</li><li>Hospital bills and getting flown home drive the decision; cancellation cover is seen as optional</li></ul></div>
+<div class="f"><div class="q">04 · What puts them off?</div><div class="n">−50%</div><div class="s">net sentiment on claims (32 of 50 comments negative)</div>
+<ul><li>Paperwork, months of delay, denials on technicalities</li><li>The complaints are about whether insurers pay, rarely about price</li></ul></div>
+<div class="f y"><div class="q">05 · Who is the traveller?</div><div class="n">88%</div><div class="s">of people whose location is known are US-based (43 of 49)</div>
+<ul><li>US travellers are the most positive about medical cover (+1.64) and the harshest on claims (−1.0)</li><li>They weigh a policy against credit-card cover, Medicare and state rules</li></ul></div>
+<div class="f k"><div class="q">So what for XCover</div><div class="n">Prove it pays</div><div class="s">Trust, not awareness, is the barrier to purchase</div>
+<ul><li>Lead with medical &amp; evacuation cover</li><li>Show proof that claims get paid, and how fast</li><li>Use plain-language cover; position it as filling credit-card gaps</li></ul></div>
+</div>
+</section>
+
+<section>
+<div class="h2"><i></i><h2>Themes across the threads</h2></div>
+<p class="sub">Every comment was read in context and tagged with one main theme and a sentiment. These figures cover the five insurance threads; the travel-habits thread is reported separately below.</p>
+<div class="charts">
+<div class="card"><h3>What people talk about</h3><div class="cap">Share of the 171 insurance comments with a theme</div>
+<div class="bar"><span>Choosing a provider &amp; cost</span><div class="t"><b class="hi" style="width:100%"></b></div><span class="v">35%</span></div>
+<div class="bar"><span>Claims experience &amp; trust</span><div class="t"><b style="width:83%"></b></div><span class="v">29%</span></div>
+<div class="bar"><span>Existing cover &amp; risk appetite</span><div class="t"><b style="width:62%"></b></div><span class="v">22%</span></div>
+<div class="bar"><span>Medical &amp; emergency cover</span><div class="t"><b style="width:40%"></b></div><span class="v">14%</span></div>
+</div>
+<div class="card"><h3>How they feel about it</h3><div class="cap">Net sentiment by theme (% positive − % negative)</div>
+<div class="div"><span class="l">Medical &amp; emergency cover</span><div class="ng"></div><div class="ps"><b style="width:79%"></b></div><span class="v">+79%</span></div>
+<div class="div"><span class="l">Choosing a provider &amp; cost</span><div class="ng"></div><div class="ps"><b style="width:22%"></b></div><span class="v">+22%</span></div>
+<div class="div"><span class="l">Existing cover &amp; risk appetite</span><div class="ng"></div><div class="ps"><b style="width:11%"></b></div><span class="v">+11%</span></div>
+<div class="div"><span class="l">Claims experience &amp; trust</span><div class="ng"><b style="width:50%"></b></div><div class="ps"></div><span class="v m">−50%</span></div>
+</div>
+<div class="card"><h3>Why the undecided are unsure</h3><div class="cap">Main reason given in 33 comments from people still deciding</div>
+<div class="bar"><span>Can’t tell who to trust</span><div class="t"><b class="y" style="width:100%"></b></div><span class="v">14</span></div>
+<div class="bar"><span>Which provider or plan?</span><div class="t"><b style="width:71%"></b></div><span class="v">10</span></div>
+<div class="bar"><span>Confusing cover terms</span><div class="t"><b style="width:21%"></b></div><span class="v">3</span></div>
+<div class="bar"><span>Price or limits</span><div class="t"><b style="width:14%"></b></div><span class="v">2</span></div>
+<div class="bar"><span>Eligibility (country/state)</span><div class="t"><b style="width:14%"></b></div><span class="v">2</span></div>
+<div class="bar"><span>Do I need it at all?</span><div class="t"><b style="width:14%"></b></div><span class="v">2</span></div>
+</div>
+</div>
+</section>
+
+<section>
+<div class="h2"><i></i><h2>What travellers praise, criticise and ask</h2></div>
+<table class="tpn">
+<thead><tr><th>Theme</th><th>Positive sentiment around</th><th>Negative sentiment around</th><th>Questions around</th></tr></thead>
+<tbody>
+<tr><td>Medical &amp; emergency cover<span>19 positive · 0 negative</span></td><td data-h="Positive">Hospital bills paid in full; being flown home by air ambulance; peace of mind; “medical is the part that matters”</td><td data-h="Negative">No negatives. Gaps raised: cover limits feel low; only commercial flights home are covered, not medical transport</td><td data-h="Questions">Emergency vs regular medical? How much cover is enough? Does my home health plan work abroad?</td></tr>
+<tr><td>Claims experience &amp; trust<span>7 positive · 32 negative</span></td><td data-h="Positive">Paid fast when documents are in order; insurer paid when the airline and card refused; “bad reviews are skewed”</td><td data-h="Negative">Months of paperwork and repeated forms; lost claims; denials on technicalities; partial payouts; vouchers instead of refunds</td><td data-h="Questions">Will they actually pay? Has anyone filed a claim with them? How long does it take? Why was this denied?</td></tr>
+<tr><td>Choosing a provider &amp; cost<span>19 positive · 6 negative</span></td><td data-h="Positive">Annual policies good value; cheap cover for young travellers; comparison sites helpful</td><td data-h="Negative">Every review looks bad; comparison sites miss big insurers; premiums doubled; prices rise steeply with age</td><td data-h="Questions">Which one should I buy? Which plan or tier? Can I trust the reviews? Is this post an ad? Can I buy it in my state?</td></tr>
+<tr><td>Existing cover &amp; risk appetite<span>10 positive · 6 negative</span></td><td data-h="Positive">Credit card covers delays and cancellation; cover from work or a health plan is enough; “you’ll never regret buying it”</td><td data-h="Negative">Card benefits withdrawn or cut after 65; cards don’t cover major medical; “I self-insure”; gave up after a bad claim</td><td data-h="Questions">Do I need it at all? Does my card already cover this? Is it worth it for a cheap or domestic trip?</td></tr>
+</tbody>
+</table>
+</section>
+
+<section>
+<div class="h2"><i></i><h2>Voices from the threads</h2></div>
+<p class="sub">Paraphrased to keep them short; each links to the original comment. The colour bar shows the tone: yellow positive, black negative, grey a question.</p>
+<div class="voices">
+<div class="voice p"><div class="tag"></div><div><p>A parent’s 27-year-old daughter ruptured a tumour in Vietnam: 14 days in ICU (~$49k) and a $300k air ambulance home to the US, all paid by a ~$60 policy.</p><small><a href="https://www.reddit.com/r/NeedTravelAdvice/comments/1xkh7qg/just_got_350000_of_coverage_on_60_travel/">Post, r/NeedTravelAdvice</a> · 86 upvotes · US</small></div></div>
+<div class="voice n"><div class="tag"></div><div><p>A long-time customer finally made a claim: 5 months and 30+ emails later they received about $200 of $2,000 spent on an emergency tooth extraction.</p><small><a href="https://www.reddit.com/r/travel/comments/1htmu6j/i_am_looking_for_travel_insurance_and_they_all/mweoy28/">Comment, r/travel</a> · posted 5× by the same user</small></div></div>
+<div class="voice p"><div class="tag"></div><div><p>Seriously ill in Central America, the insurer moved them to a better hospital and got the family home to the US; they now use no other insurer.</p><small><a href="https://www.reddit.com/r/travel/comments/1htmu6j/i_am_looking_for_travel_insurance_and_they_all/m5eowqc/">Comment, r/travel</a> · 24 upvotes · US</small></div></div>
+<div class="voice n"><div class="tag"></div><div><p>A husband’s heart attack cancelled a river cruise; the insurer wanted a statement from every doctor, and after six months they had still received nothing.</p><small><a href="https://www.reddit.com/r/femaletravelers/comments/1xwbqlt/is_travel_insurance_a_must_have_and_if_so_any/19snal2u56876/">Comment, r/femaletravelers</a></small></div></div>
+<div class="voice p"><div class="tag"></div><div><p>A flight was cancelled; the airline denied the claim and so did the credit card. The travel insurer paid within 72 hours.</p><small><a href="https://www.reddit.com/r/femaletravelers/comments/1xwbqlt/is_travel_insurance_a_must_have_and_if_so_any/19sn7z0wo2kg2/">Comment, r/femaletravelers</a> · US (NYC)</small></div></div>
+<div class="voice n"><div class="tag"></div><div><p>A medical claim was refused because the traveller stayed with a friend and had no hotel booking to show.</p><small><a href="https://www.reddit.com/r/travel/comments/138so0p/travel_insurance_recommendations_for_us_citizens/kefc7wi/">Comment, r/travel</a></small></div></div>
+<div class="voice q"><div class="tag"></div><div><p>The top five insurers suggested to them all had questionable reviews, so they turned to Reddit instead.</p><small><a href="https://www.reddit.com/r/travel/comments/138so0p/travel_insurance_recommendations_for_us_citizens/jj00vbl/">Comment, r/travel</a> · US citizen</small></div></div>
+<div class="voice q"><div class="tag"></div><div><p>Commenters suspected the $350k success story was an ad: a two-year-old account that had never posted before.</p><small><a href="https://www.reddit.com/r/NeedTravelAdvice/comments/1xkh7qg/just_got_350000_of_coverage_on_60_travel/19rymjrtzelqc/">Comment, r/NeedTravelAdvice</a></small></div></div>
+</div>
+<div class="quote"><div class="mk">“</div><div><p>it seems like there is a business opportunity for honest and easy UX travel insurance</p><small>Commenter, <a href="https://www.reddit.com/r/travel/comments/1htmu6j/i_am_looking_for_travel_insurance_and_they_all/p5mdwlj/">r/travel</a>, after reading the thread’s claim stories</small></div></div>
+</section>
+
+<section>
+<div class="h2"><i></i><h2>The threads we looked at</h2></div>
+<p class="sub">The four newest threads are from the last four months. The two older ones are still collecting comments in 2026 and fill gaps: review distrust, and the only US-specific discussion.</p>
+<div class="threads">
+
+<div class="thread"><div class="hd"><div class="sr"><span>r/femaletravelers</span><span class="pill">Most recent</span></div>
+<h3><a href="https://www.reddit.com/r/femaletravelers/comments/1xwbqlt/is_travel_insurance_a_must_have_and_if_so_any/">Is travel insurance a must have and if so, any recommendations?</a></h3></div>
+<div class="bd"><div class="facts"><div><b>14 Nov 2026</b><span>Posted</span></div><div><b>55</b><span>Comments read (58 on Reddit)</span></div><div><b>+0.41</b><span>Avg sentiment</span></div><div><b>9</b><span>US people</span></div></div>
+<div class="lbl">Topic</div><p>The core question: do I need it, and which one?</p>
+<div class="lbl">Why it’s included</div><p>Very recent, and it captures the “is it worth it?” decision.</p>
+<div class="lbl">What we found</div><p>The most positive insurance thread. Medical cover is called essential; trip cover depends on how much risk you’ll take. Annual policies are seen as good value. Heated debate about credit-card and employer cover, which gets cut back for travellers over 65.</p>
+<div class="sbar"><i class="p" style="width:38%"></i><i class="u" style="width:46%"></i><i class="x" style="width:11%"></i><i class="n" style="width:5%"></i></div><div class="slegend">21 positive · 26 neutral · 6 mixed · 3 negative</div></div></div>
+
+<div class="thread"><div class="hd"><div class="sr"><span>r/travel</span><span class="pill ctx">Context thread</span></div>
+<h3><a href="https://www.reddit.com/r/travel/comments/1xuu4c2/how_often_do_you_travel_do_you_have_an_annual_plan/">How often do you travel? Do you have an annual plan?</a></h3></div>
+<div class="bd"><div class="facts"><div><b>13 Nov 2026</b><span>Posted</span></div><div><b>174</b><span>Comments read (189 on Reddit)</span></div><div><b>+0.22</b><span>Avg sentiment (travel)</span></div><div><b>36</b><span>US people</span></div></div>
+<div class="lbl">Topic</div><p>Travel routines: how often people travel and how far ahead they plan.</p>
+<div class="lbl">Why it’s included</div><p>The newest and busiest thread. It shows how often people travel (context for annual cover), but only 2 comments mention insurance, so it is kept out of the insurance figures.</p>
+<div class="lbl">What we found</div><p>2–4+ trips a year is common, often a mix of international and domestic, planned months ahead, and paid for with points and credit cards: a natural audience for annual cover.</p>
+<div class="sbar"><i class="p" style="width:26%"></i><i class="u" style="width:66%"></i><i class="x" style="width:3%"></i><i class="n" style="width:5%"></i></div><div class="slegend">46 positive · 115 neutral · 6 mixed · 8 negative (tone toward travel)</div></div></div>
+
+<div class="thread"><div class="hd"><div class="sr"><span>r/NeedTravelAdvice</span><span class="pill">Recent</span></div>
+<h3><a href="https://www.reddit.com/r/NeedTravelAdvice/comments/1xkh7qg/just_got_350000_of_coverage_on_60_travel/">Just got $350,000 of coverage on $60 travel insurance policy</a></h3></div>
+<div class="bd"><div class="facts"><div><b>31 Oct 2026</b><span>Posted</span></div><div><b>28</b><span>Comments read (28 on Reddit)</span></div><div><b>+0.17</b><span>Avg sentiment</span></div><div><b>6</b><span>US people</span></div></div>
+<div class="lbl">Topic</div><p>A medical evacuation success story, and whether to believe it.</p>
+<div class="lbl">Why it’s included</div><p>Recent, well upvoted (86), and a real emergency case.</p>
+<div class="lbl">What we found</div><p>Medical evacuation is the moment that makes travel insurance feel worth it. But commenters called the post an ad, so even success stories don’t earn trust. Older travellers say medical cover gets expensive past Medicare age.</p>
+<div class="sbar"><i class="p" style="width:31%"></i><i class="u" style="width:41%"></i><i class="x" style="width:7%"></i><i class="n" style="width:21%"></i></div><div class="slegend">9 positive · 12 neutral · 2 mixed · 6 negative</div></div></div>
+
+<div class="thread"><div class="hd"><div class="sr"><span>r/TravelSmarterNotHarde</span><span class="pill">Recent</span></div>
+<h3><a href="https://www.reddit.com/r/TravelSmarterNotHarde/comments/1uxymjh/after_15_years_of_travel_and_3_actual_claims/">After 15 years of travel and 3 actual claims, here’s what travel insurance actually covers</a></h3></div>
+<div class="bd"><div class="facts"><div><b>16 Jul 2026</b><span>Posted</span></div><div><b>19</b><span>Comments read (29 on Reddit)</span></div><div><b>+0.40</b><span>Avg sentiment</span></div><div><b>6</b><span>US people</span></div></div>
+<div class="lbl">Topic</div><p>A frequent traveller explains which cover paid off: medical and cancellation.</p>
+<div class="lbl">Why it’s included</div><p>First-hand claims experience, 96% upvoted, and still getting comments in November 2026.</p>
+<div class="lbl">What we found</div><p>Medical cover is the clear winner, and the poster suggests buying for trips above about $1,500 of non-refundable spend. Commenters mostly ask which insurer to use and how the fine print works (claim deadlines, delay vs interruption).</p>
+<div class="sbar"><i class="p" style="width:40%"></i><i class="u" style="width:40%"></i><i class="x" style="width:10%"></i><i class="n" style="width:10%"></i></div><div class="slegend">8 positive · 8 neutral · 2 mixed · 2 negative</div></div></div>
+
+<div class="thread"><div class="hd"><div class="sr"><span>r/travel</span><span class="pill ctx">Older, still active</span></div>
+<h3><a href="https://www.reddit.com/r/travel/comments/1htmu6j/i_am_looking_for_travel_insurance_and_they_all/">I am looking for travel insurance and they all seem to not have good reviews</a></h3></div>
+<div class="bd"><div class="facts"><div><b>4 Jan 2025</b><span>Posted (comments to Sep 2026)</span></div><div><b>48</b><span>Comments read (67 on Reddit)</span></div><div><b>−0.37</b><span>Avg sentiment</span></div><div><b>13</b><span>US people</span></div></div>
+<div class="lbl">Topic</div><p>Why every insurer seems to have bad reviews.</p>
+<div class="lbl">Why it’s included</div><p>The clearest thread on distrust and claims, and people are still adding to it.</p>
+<div class="lbl">What we found</div><p>The most negative thread: claim horror stories (repeated paperwork, war and weather exclusions, vouchers instead of refunds). The counterpoint is that well-documented claims get paid and reviews skew negative. People ask for an honest, simple insurer.</p>
+<div class="sbar"><i class="p" style="width:31%"></i><i class="u" style="width:18%"></i><i class="x" style="width:4%"></i><i class="n" style="width:47%"></i></div><div class="slegend">15 positive · 9 neutral · 2 mixed · 23 negative</div></div></div>
+
+<div class="thread"><div class="hd"><div class="sr"><span>r/travel</span><span class="pill ctx">Older, still active</span></div>
+<h3><a href="https://www.reddit.com/r/travel/comments/138so0p/travel_insurance_recommendations_for_us_citizens/">Travel insurance recommendations for US citizens?</a></h3></div>
+<div class="bd"><div class="facts"><div><b>5 May 2023</b><span>Posted (comments to Jun 2026)</span></div><div><b>39</b><span>Comments read (56 on Reddit)</span></div><div><b>+0.03</b><span>Avg sentiment</span></div><div><b>9</b><span>US people</span></div></div>
+<div class="lbl">Topic</div><p>Which insurer a US traveller should choose.</p>
+<div class="lbl">Why it’s included</div><p>The only thread written for US travellers, and still being answered three years on.</p>
+<div class="lbl">What we found</div><p>A common US approach: book with a credit card for trip cover and buy a cheap medical-only plan. Reviews are distrusted; claims are denied on technicalities. Years later, people still reply asking which insurer the poster chose.</p>
+<div class="sbar"><i class="p" style="width:28%"></i><i class="u" style="width:45%"></i><i class="x" style="width:2%"></i><i class="n" style="width:25%"></i></div><div class="slegend">11 positive · 18 neutral · 1 mixed · 10 negative</div></div></div>
+
+</div>
+</section>
+
+<section>
+<div class="h2"><i></i><h2>How this was done</h2></div>
+<div class="method">
+<div class="card"><h3>Method</h3><ul style="margin-top:10px">
+<li>Reddit JSON exports of 6 threads, flattened to one row per post or comment (369 rows).</li>
+<li>Every row read in reply context and tagged with one main theme (plus an optional second one) and a sentiment toward travel insurance (−2 to +2).</li>
+<li>Themes were built up from the comments themselves, then narrowed to 5 overall themes.</li>
+<li>US location coded per person: stated, inferred from US-only cues (Medicare, US cards, states), non-US, or unknown.</li>
+<li>Net sentiment = % positive − % negative. Undecided = people asking what to buy, whether they need it, or whether insurers will pay.</li>
+</ul></div>
+<div class="card"><h3>Read with care</h3><ul style="margin-top:10px">
+<li>About 190 insurance comments from Reddit, which over-represents bad claim experiences and US users.</li>
+<li>Coded by one person: treat the findings as directional hypotheses, not measured shares.</li>
+<li>US share is among people whose location is known (49 of 146); most people don’t say.</li>
+<li>One user posted the same claim complaint 5 times; it is flagged and doesn’t change the overall direction.</li>
+<li>Voices are paraphrased; follow the links for the original wording.</li>
+</ul></div>
+</div>
+</section>
+
+</div>
+
+<footer><div class="wrap"><span>November 2026 · Internal research snapshot</span><span>© 2026 Cover Genius. All rights reserved.</span></div></footer>
+</body>
+</html>
