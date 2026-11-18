@@ -77,10 +77,17 @@ td{padding:12px 14px;border-top:1px solid var(--line);vertical-align:top}
 .voice.p .tag{background:var(--yel)}.voice.n .tag{background:var(--ink)}.voice.q .tag{background:var(--grey)}
 .voice p{margin:0 0 8px;color:var(--ink)}
 .voice small{color:var(--soft);font-size:12.5px}
-.quote{background:var(--ink);color:#fff;padding:28px 32px;margin-top:16px;display:flex;gap:18px;align-items:flex-start}
-.quote .mk{font:400 72px/0.8 "Bebas Neue",Impact,sans-serif;color:var(--yel)}
-.quote p{font:600 22px/1.35 Montserrat,Arial,sans-serif;margin:0 0 8px}
-.quote small{color:#BDBDBD}.quote a{color:var(--yel)}
+.ages{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.age{background:var(--card);border:1px solid var(--line);display:flex;flex-direction:column}
+.age .hd{padding:18px 22px;background:var(--ink);color:#fff}
+.age.y .hd{background:var(--yel);color:var(--ink)}
+.age .band{font:400 34px/1 "Bebas Neue",Impact,sans-serif}
+.age .who{font:600 12.5px/1.35 Inter,Arial,sans-serif;margin-top:4px;opacity:.85}
+.age .bd{padding:16px 22px 20px;flex:1}
+.age ul{margin:0;padding-left:18px}.age li{margin:5px 0}
+.age .tone{margin-top:12px;font-size:13px;color:var(--soft)}
+.age .tone b{color:var(--ink)}
+.agenote{background:var(--yel);padding:16px 20px;margin-top:16px;color:var(--ink)}
 .threads{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
 .thread{background:var(--card);border:1px solid var(--line);display:flex;flex-direction:column}
 .thread .hd{padding:18px 22px;border-bottom:1px solid var(--line)}
@@ -104,8 +111,8 @@ td{padding:12px 14px;border-top:1px solid var(--line);vertical-align:top}
 .method ul{margin:0;padding-left:18px}.method li{margin:5px 0}
 footer{margin-top:48px;border-top:1px solid var(--line);padding:20px 0 40px;color:var(--muted);font-size:12px}
 footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
-@media (max-width:980px){.kpis{grid-template-columns:repeat(3,minmax(0,1fr))}.kpi:nth-child(3){border-right:none}.kpi:nth-child(-n+3){border-bottom:1px solid var(--line)}.find,.charts{grid-template-columns:repeat(2,minmax(0,1fr))}.threads{grid-template-columns:minmax(0,1fr)}}
-@media (max-width:760px){.wrap{padding:0 16px}h1{font-size:46px}.kpis,.find,.charts,.voices,.threads,.method{grid-template-columns:1fr}.kpi{border-right:none;border-bottom:1px solid var(--line)}.facts{grid-template-columns:repeat(2,minmax(0,1fr))}.tpn,.tpn tbody,.tpn tr,.tpn td{display:block;width:100%!important}.tpn thead{display:none}.tpn td:before{content:attr(data-h);display:block;font:700 11px Montserrat,Arial,sans-serif;letter-spacing:.06em;text-transform:uppercase;color:var(--soft);margin-bottom:4px}.tpn td:first-child:before{display:none}.bar,.div{grid-template-columns:120px 1fr 44px}.div{grid-template-columns:110px 1fr 1fr 44px}header.top .meta{display:none}}
+@media (max-width:980px){.kpis{grid-template-columns:repeat(3,minmax(0,1fr))}.kpi:nth-child(3){border-right:none}.kpi:nth-child(-n+3){border-bottom:1px solid var(--line)}.find,.charts{grid-template-columns:repeat(2,minmax(0,1fr))}.threads{grid-template-columns:minmax(0,1fr)}.ages{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:760px){.wrap{padding:0 16px}h1{font-size:46px}.kpis,.find,.charts,.voices,.threads,.method,.ages{grid-template-columns:1fr}.kpi{border-right:none;border-bottom:1px solid var(--line)}.facts{grid-template-columns:repeat(2,minmax(0,1fr))}.tpn,.tpn tbody,.tpn tr,.tpn td{display:block;width:100%!important}.tpn thead{display:none}.tpn td:before{content:attr(data-h);display:block;font:700 11px Montserrat,Arial,sans-serif;letter-spacing:.06em;text-transform:uppercase;color:var(--soft);margin-bottom:4px}.tpn td:first-child:before{display:none}.bar,.div{grid-template-columns:120px 1fr 44px}.div{grid-template-columns:110px 1fr 1fr 44px}header.top .meta{display:none}}
 </style>
 </head>
 <body>
@@ -206,7 +213,29 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 <div class="voice q"><div class="tag"></div><div><p>The top five insurers suggested to them all had questionable reviews, so they turned to Reddit instead.</p><small><a href="https://www.reddit.com/r/travel/comments/138so0p/travel_insurance_recommendations_for_us_citizens/jj00vbl/">Comment, r/travel</a> · US citizen</small></div></div>
 <div class="voice q"><div class="tag"></div><div><p>Commenters suspected the $350k success story was an ad: a two-year-old account that had never posted before.</p><small><a href="https://www.reddit.com/r/NeedTravelAdvice/comments/1xkh7qg/just_got_350000_of_coverage_on_60_travel/19rymjrtzelqc/">Comment, r/NeedTravelAdvice</a></small></div></div>
 </div>
-<div class="quote"><div class="mk">“</div><div><p>it seems like there is a business opportunity for honest and easy UX travel insurance</p><small>Commenter, <a href="https://www.reddit.com/r/travel/comments/1htmu6j/i_am_looking_for_travel_insurance_and_they_all/p5mdwlj/">r/travel</a>, after reading the thread’s claim stories</small></div></div>
+</section>
+
+<section>
+<div class="h2"><i></i><h2>Findings by age</h2></div>
+<p class="sub">Few people give their age: about 8 in the insurance threads and 20 in the travel-habits thread. Treat these as early signals, not measured splits.</p>
+<div class="ages">
+<div class="age y"><div class="hd"><div class="band">Under 35</div><div class="who">Price-sensitive, medical-first</div></div><div class="bd"><ul>
+<li>Medical-only plans are described as very cheap when you’re young, and are often paired with credit-card trip cover.</li>
+<li>The strongest story in the set is about a <b>27-year-old</b> solo traveller whose ICU stay and air ambulance home were fully paid.</li>
+<li>People in their 20s (habits thread) talk about tight budgets, points and flexible, last-minute trips.</li>
+</ul><div class="tone"><b>Tone:</b> positive about cheap medical cover; one emergency story carries a lot of weight.</div></div></div>
+<div class="age"><div class="hd"><div class="band">35–59</div><div class="who">Planned, frequent leisure travel</div></div><div class="bd"><ul>
+<li>Typical pattern: one big international trip a year, planned 6–12 months ahead, plus several short domestic trips.</li>
+<li>Work and school calendars set when they travel; points and status keep costs down.</li>
+<li>Rarely mention age when discussing insurance; this group is mostly silent on it.</li>
+</ul><div class="tone"><b>Tone:</b> neutral; a natural audience for annual cover but little direct signal.</div></div></div>
+<div class="age"><div class="hd"><div class="band">60+</div><div class="who">Travel the most, pay the most, lose card cover</div></div><div class="bd"><ul>
+<li>Prices rise with age: about <b>$800 a year</b> for an annual policy (over 60); a health insurer’s plan that is cheap when young “ramps up” for older travellers.</li>
+<li>Card cover shrinks: at 65+ one card covers only <b>3 days</b> of medical per trip, so they buy separate medical cover. Medicare users find adequate cover expensive, and over 80 it is hard to get.</li>
+<li>They add cover rather than drop it: one 65-year-old holds an annual policy, card cover <i>and</i> an evacuation membership. Retirees describe 5–7 trips a year, and one has an annual policy.</li>
+</ul><div class="tone"><b>Tone:</b> negative on price and access, positive on the value of medical cover.</div></div></div>
+</div>
+<div class="agenote"><b>What this suggests for XCover:</b> travellers aged 60+ travel often, value medical and evacuation cover, and feel penalised on price and by card limits, which makes them a strong audience for an annual, medical-led policy with clear age-based pricing. Under-35s respond to emergency stories and cheap medical-only cover. Confirm with customer or survey data by age band.</div>
 </section>
 
 <section>
@@ -216,7 +245,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 
 <div class="thread"><div class="hd"><div class="sr"><span>r/femaletravelers</span><span class="pill">Most recent</span></div>
 <h3><a href="https://www.reddit.com/r/femaletravelers/comments/1xwbqlt/is_travel_insurance_a_must_have_and_if_so_any/">Is travel insurance a must have and if so, any recommendations?</a></h3></div>
-<div class="bd"><div class="facts"><div><b>14 Nov 2026</b><span>Posted</span></div><div><b>55</b><span>Comments read (58 on Reddit)</span></div><div><b>+0.41</b><span>Avg sentiment</span></div><div><b>9</b><span>US people</span></div></div>
+<div class="bd"><div class="facts"><div><b>14 Nov 2026</b><span>Posted</span></div><div><b>55</b><span>Comments read (58 on Reddit)</span></div><div><b>+0.41</b><span>Avg sentiment</span></div><div><b>9</b><span>Americans identified in thread</span></div></div>
 <div class="lbl">Topic</div><p>The core question: do I need it, and which one?</p>
 <div class="lbl">Why it’s included</div><p>Very recent, and it captures the “is it worth it?” decision.</p>
 <div class="lbl">What we found</div><p>The most positive insurance thread. Medical cover is called essential; trip cover depends on how much risk you’ll take. Annual policies are seen as good value. Heated debate about credit-card and employer cover, which gets cut back for travellers over 65.</p>
@@ -224,7 +253,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 
 <div class="thread"><div class="hd"><div class="sr"><span>r/travel</span><span class="pill ctx">Context thread</span></div>
 <h3><a href="https://www.reddit.com/r/travel/comments/1xuu4c2/how_often_do_you_travel_do_you_have_an_annual_plan/">How often do you travel? Do you have an annual plan?</a></h3></div>
-<div class="bd"><div class="facts"><div><b>13 Nov 2026</b><span>Posted</span></div><div><b>174</b><span>Comments read (189 on Reddit)</span></div><div><b>+0.22</b><span>Avg sentiment (travel)</span></div><div><b>36</b><span>US people</span></div></div>
+<div class="bd"><div class="facts"><div><b>13 Nov 2026</b><span>Posted</span></div><div><b>174</b><span>Comments read (189 on Reddit)</span></div><div><b>+0.22</b><span>Avg sentiment (travel)</span></div><div><b>36</b><span>Americans identified in thread</span></div></div>
 <div class="lbl">Topic</div><p>Travel routines: how often people travel and how far ahead they plan.</p>
 <div class="lbl">Why it’s included</div><p>The newest and busiest thread. It shows how often people travel (context for annual cover), but only 2 comments mention insurance, so it is kept out of the insurance figures.</p>
 <div class="lbl">What we found</div><p>2–4+ trips a year is common, often a mix of international and domestic, planned months ahead, and paid for with points and credit cards: a natural audience for annual cover.</p>
@@ -232,7 +261,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 
 <div class="thread"><div class="hd"><div class="sr"><span>r/NeedTravelAdvice</span><span class="pill">Recent</span></div>
 <h3><a href="https://www.reddit.com/r/NeedTravelAdvice/comments/1xkh7qg/just_got_350000_of_coverage_on_60_travel/">Just got $350,000 of coverage on $60 travel insurance policy</a></h3></div>
-<div class="bd"><div class="facts"><div><b>31 Oct 2026</b><span>Posted</span></div><div><b>28</b><span>Comments read (28 on Reddit)</span></div><div><b>+0.17</b><span>Avg sentiment</span></div><div><b>6</b><span>US people</span></div></div>
+<div class="bd"><div class="facts"><div><b>31 Oct 2026</b><span>Posted</span></div><div><b>28</b><span>Comments read (28 on Reddit)</span></div><div><b>+0.17</b><span>Avg sentiment</span></div><div><b>6</b><span>Americans identified in thread</span></div></div>
 <div class="lbl">Topic</div><p>A medical evacuation success story, and whether to believe it.</p>
 <div class="lbl">Why it’s included</div><p>Recent, well upvoted (86), and a real emergency case.</p>
 <div class="lbl">What we found</div><p>Medical evacuation is the moment that makes travel insurance feel worth it. But commenters called the post an ad, so even success stories don’t earn trust. Older travellers say medical cover gets expensive past Medicare age.</p>
@@ -240,7 +269,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 
 <div class="thread"><div class="hd"><div class="sr"><span>r/TravelSmarterNotHarde</span><span class="pill">Recent</span></div>
 <h3><a href="https://www.reddit.com/r/TravelSmarterNotHarde/comments/1uxymjh/after_15_years_of_travel_and_3_actual_claims/">After 15 years of travel and 3 actual claims, here’s what travel insurance actually covers</a></h3></div>
-<div class="bd"><div class="facts"><div><b>16 Jul 2026</b><span>Posted</span></div><div><b>19</b><span>Comments read (29 on Reddit)</span></div><div><b>+0.40</b><span>Avg sentiment</span></div><div><b>6</b><span>US people</span></div></div>
+<div class="bd"><div class="facts"><div><b>16 Jul 2026</b><span>Posted</span></div><div><b>19</b><span>Comments read (29 on Reddit)</span></div><div><b>+0.40</b><span>Avg sentiment</span></div><div><b>6</b><span>Americans identified in thread</span></div></div>
 <div class="lbl">Topic</div><p>A frequent traveller explains which cover paid off: medical and cancellation.</p>
 <div class="lbl">Why it’s included</div><p>First-hand claims experience, 96% upvoted, and still getting comments in November 2026.</p>
 <div class="lbl">What we found</div><p>Medical cover is the clear winner, and the poster suggests buying for trips above about $1,500 of non-refundable spend. Commenters mostly ask which insurer to use and how the fine print works (claim deadlines, delay vs interruption).</p>
@@ -248,7 +277,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 
 <div class="thread"><div class="hd"><div class="sr"><span>r/travel</span><span class="pill ctx">Older, still active</span></div>
 <h3><a href="https://www.reddit.com/r/travel/comments/1htmu6j/i_am_looking_for_travel_insurance_and_they_all/">I am looking for travel insurance and they all seem to not have good reviews</a></h3></div>
-<div class="bd"><div class="facts"><div><b>4 Jan 2025</b><span>Posted (comments to Sep 2026)</span></div><div><b>48</b><span>Comments read (67 on Reddit)</span></div><div><b>−0.37</b><span>Avg sentiment</span></div><div><b>13</b><span>US people</span></div></div>
+<div class="bd"><div class="facts"><div><b>4 Jan 2025</b><span>Posted (comments to Sep 2026)</span></div><div><b>48</b><span>Comments read (67 on Reddit)</span></div><div><b>−0.37</b><span>Avg sentiment</span></div><div><b>13</b><span>Americans identified in thread</span></div></div>
 <div class="lbl">Topic</div><p>Why every insurer seems to have bad reviews.</p>
 <div class="lbl">Why it’s included</div><p>The clearest thread on distrust and claims, and people are still adding to it.</p>
 <div class="lbl">What we found</div><p>The most negative thread: claim horror stories (repeated paperwork, war and weather exclusions, vouchers instead of refunds). The counterpoint is that well-documented claims get paid and reviews skew negative. People ask for an honest, simple insurer.</p>
@@ -256,7 +285,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 
 <div class="thread"><div class="hd"><div class="sr"><span>r/travel</span><span class="pill ctx">Older, still active</span></div>
 <h3><a href="https://www.reddit.com/r/travel/comments/138so0p/travel_insurance_recommendations_for_us_citizens/">Travel insurance recommendations for US citizens?</a></h3></div>
-<div class="bd"><div class="facts"><div><b>5 May 2023</b><span>Posted (comments to Jun 2026)</span></div><div><b>39</b><span>Comments read (56 on Reddit)</span></div><div><b>+0.03</b><span>Avg sentiment</span></div><div><b>9</b><span>US people</span></div></div>
+<div class="bd"><div class="facts"><div><b>5 May 2023</b><span>Posted (comments to Jun 2026)</span></div><div><b>39</b><span>Comments read (56 on Reddit)</span></div><div><b>+0.03</b><span>Avg sentiment</span></div><div><b>9</b><span>Americans identified in thread</span></div></div>
 <div class="lbl">Topic</div><p>Which insurer a US traveller should choose.</p>
 <div class="lbl">Why it’s included</div><p>The only thread written for US travellers, and still being answered three years on.</p>
 <div class="lbl">What we found</div><p>A common US approach: book with a credit card for trip cover and buy a cheap medical-only plan. Reviews are distrusted; claims are denied on technicalities. Years later, people still reply asking which insurer the poster chose.</p>
@@ -280,6 +309,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 <li>Coded by one person: treat the findings as directional hypotheses, not measured shares.</li>
 <li>US share is among people whose location is known (49 of 146); most people don’t say.</li>
 <li>One user posted the same claim complaint 5 times; it is flagged and doesn’t change the overall direction.</li>
+<li>Age findings rest on about 8 insurance comments that mention age or life stage.</li>
 <li>Voices are paraphrased; follow the links for the original wording.</li>
 </ul></div>
 </div>
